@@ -1,25 +1,331 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Consultant - Home</title>
+    <meta name="description" content="Insight Consulting helps businesses manage projects, track budgets, and understand performance through data analytics.">
+
+    <title>Home | Insight Consulting</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
+    <!-- NAVIGATION BAR -->
     <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
+        <nav class="navbar" aria-label="Main navigation">
+
+            <a href="index.html" class="logo">
+                Insight Consulting
+            </a>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html" class="active" aria-current="page">
+                        Home
+                    </a>
+                </li>
+                <li><a href="aboutus.html">About Me</a></li>
                 <li><a href="managesales.html">Manage Sales</a></li>
                 <li><a href="analytics.html">Analytics</a></li>
             </ul>
+
         </nav>
     </header>
-    <main>
-        <h1>Welcome to Your Business Consultant</h1>
-        <p>We provide expert advice to help your business grow and succeed. Explore our services and tools to manage your business effectively.</p>
+
+    <main class="home-page">
+
+        <!-- HERO SECTION -->
+        <section class="home-hero">
+            <div class="home-hero-content">
+
+                <p class="home-eyebrow">
+                    BUSINESS CONSULTING & ANALYTICS
+                </p>
+
+                <h1>
+                    Smarter Insights.<br>
+                    Stronger Business Decisions.
+                </h1>
+
+                <p class="home-hero-description">
+                    Welcome to Insight Consulting, a business
+                    consulting platform designed to help
+                    organizations manage client projects,
+                    track budgets, and make informed decisions
+                    using data.
+                </p>
+
+                <div class="home-actions">
+                    <a href="managesales.html" class="home-button-primary">
+                        Manage Projects &rarr;
+                    </a>
+
+                    <a href="analytics.html" class="home-button-secondary">
+                        View Analytics
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="home-section" id="services">
+
+            <div class="home-section-heading">
+                <p class="home-section-label">WHAT WE FOCUS ON</p>
+
+                <h2>Our Consulting Services</h2>
+
+                <p>
+                    We focus on helping organizations improve
+                    performance through better planning,
+                    processes, and data-driven decisions.
+                </p>
+            </div>
+
+            <div class="home-card-grid">
+
+                <article class="home-service-card">
+                    <div class="home-service-icon" aria-hidden="true">
+                        01
+                    </div>
+
+                    <h3>Business Strategy</h3>
+
+                    <p>
+                        Help organizations identify opportunities,
+                        establish clear business goals, and
+                        develop strategies that support
+                        long-term growth and improvement.
+                    </p>
+                </article>
+
+                <article class="home-service-card">
+                    <div class="home-service-icon" aria-hidden="true">
+                        02
+                    </div>
+
+                    <h3>Project Management</h3>
+
+                    <p>
+                        Support effective project planning,
+                        track progress, monitor budgets,
+                        and keep important deliverables
+                        organized throughout the project.
+                    </p>
+                </article>
+
+                <article class="home-service-card">
+                    <div class="home-service-icon" aria-hidden="true">
+                        03
+                    </div>
+
+                    <h3>Business Analytics</h3>
+
+                    <p>
+                        Turn business information into useful
+                        insights through charts, performance
+                        metrics, and interactive dashboards.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="home-section home-section-alt">
+
+            <div class="home-section-heading">
+                <p class="home-section-label">OUR PLATFORM</p>
+
+                <h2>From Project Data to Business Insights</h2>
+
+                <p>
+                    Insight Consulting brings project management
+                    and business analytics together in one
+                    easy-to-use website.
+                </p>
+            </div>
+
+            <div class="home-steps-grid">
+
+                <article class="home-step-card">
+                    <span class="home-step-number">01</span>
+
+                    <h3>Organize Your Projects</h3>
+
+                    <p>
+                        Add and view client projects to keep
+                        important business information
+                        organized in one place.
+                    </p>
+                </article>
+
+                <article class="home-step-card">
+                    <span class="home-step-number">02</span>
+
+                    <h3>Manage Project Information</h3>
+
+                    <p>
+                        Update project details, budgets,
+                        and statuses as business needs
+                        and priorities change.
+                    </p>
+                </article>
+
+                <article class="home-step-card">
+                    <span class="home-step-number">03</span>
+
+                    <h3>Analyze Your Performance</h3>
+
+                    <p>
+                        Use visualizations to better understand
+                        project budgets, performance,
+                        and the distribution of project statuses.
+                    </p>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURE SECTION -->
+        <section class="home-section">
+
+            <div class="home-feature">
+
+                <div class="home-feature-content">
+
+                    <p class="home-section-label">
+                        DATA-DRIVEN DECISIONS
+                    </p>
+
+                    <h2>
+                        Better Business Decisions Start
+                        With Better Information.
+                    </h2>
+
+                    <p>
+                        Business consultants rely on accurate
+                        information to understand client needs,
+                        identify areas for improvement,
+                        and recommend solutions.
+                    </p>
+
+                    <p>
+                        Insight Consulting demonstrates how
+                        digital tools can help organize project
+                        information and present business data
+                        in a way that supports decision-making.
+                    </p>
+
+                    <a href="analytics.html" class="home-button-primary">
+                        Explore the Dashboard &rarr;
+                    </a>
+
+                </div>
+
+                <div class="home-feature-panel">
+
+                    <div class="home-preview-header">
+                        <span class="home-preview-dot"></span>
+                        <span class="home-preview-dot"></span>
+                        <span class="home-preview-dot"></span>
+                        <span>Business Performance</span>
+                    </div>
+
+                    <div class="home-preview-body">
+
+                        <p class="home-preview-label">
+                            PERFORMANCE OVERVIEW
+                        </p>
+
+                        <h3>Business Intelligence</h3>
+
+                        <div class="home-preview-metric">
+                            <span>Project Management</span>
+                            <strong>Track Progress</strong>
+                        </div>
+
+                        <div class="home-preview-bar">
+                            <div style="width: 82%"></div>
+                        </div>
+
+                        <div class="home-preview-metric">
+                            <span>Budget Analytics</span>
+                            <strong>Compare Costs</strong>
+                        </div>
+
+                        <div class="home-preview-bar">
+                            <div style="width: 65%"></div>
+                        </div>
+
+                        <div class="home-preview-metric">
+                            <span>Business Reporting</span>
+                            <strong>Visualize Data</strong>
+                        </div>
+
+                        <div class="home-preview-bar">
+                            <div style="width: 92%"></div>
+                        </div>
+
+                        <p class="home-preview-disclaimer">
+                            Illustrative dashboard preview
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- CALL TO ACTION -->
+        <section class="home-cta">
+
+            <div class="home-cta-content">
+
+                <h2>Ready to Explore Insight Consulting?</h2>
+
+                <p>
+                    Start managing sample client projects
+                    or explore the analytics dashboard
+                    to see how business data can support
+                    better decision-making.
+                </p>
+
+                <div class="home-actions home-actions-center">
+
+                    <a href="managesales.html" class="home-button-primary">
+                        Get Started
+                    </a>
+
+                    <a href="aboutus.html" class="home-button-secondary">
+                        Meet the Developer
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
+
+    <!-- FOOTER -->
+    <footer class="about-footer">
+        <p>
+            &copy; 2026 Insight Consulting.
+            Student Web Development Project.
+        </p>
+    </footer>
+
 </body>
 </html>
+

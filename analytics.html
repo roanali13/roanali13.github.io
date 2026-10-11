@@ -1,49 +1,344 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics</title>
+
+    <title>Business Analytics | Insight Consulting</title>
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
+
+    <!-- NAVIGATION -->
     <header>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                Insight Consulting
+            </a>
+
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="aboutus.html">About Me</a></li>
                 <li><a href="managesales.html">Manage Sales</a></li>
-                <li><a href="analytics.html">Analytics</a></li>
+                <li><a href="analytics.html" class="active">Analytics</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Data Analytics</h1>
-        <canvas id="salesChart"></canvas>
-        <script>
-            const ctx = document.getElementById('salesChart').getContext('2d');
-            const salesChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['January', 'February', 'March', 'April'],
-                    datasets: [{
-                        label: 'Sales',
-                        data: [120, 150, 180, 200],
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
+
+    <main class="analytics-page">
+
+        <!-- PAGE HEADER -->
+        <section class="about-hero">
+            <h1>Business Analytics Dashboard</h1>
+            <p>
+                Explore client project budgets, monitor progress,
+                and gain insights into business performance.
+            </p>
+        </section>
+
+        <div class="analytics-container">
+
+            <!-- DASHBOARD INTRODUCTION -->
+            <section class="dashboard-heading">
+                <h2>Project Performance Overview</h2>
+                <p>
+                    Use this dashboard to better understand
+                    consulting projects and their performance.
+                </p>
+                <p class="sample-note">
+                    Data shown is fictional and intended
+                    for demonstration purposes.
+                </p>
+            </section>
+
+            <!-- KPI CARDS -->
+            <section class="kpi-grid">
+
+                <div class="kpi-card">
+                    <h3>Total Projects</h3>
+                    <p id="totalProjects">0</p>
+                    <span>Client consulting projects</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Total Project Budget</h3>
+                    <p id="totalBudget">$0</p>
+                    <span>Combined project budgets</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Active Projects</h3>
+                    <p id="activeProjects">0</p>
+                    <span>Projects currently in progress</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Completed Projects</h3>
+                    <p id="completedProjects">0</p>
+                    <span>Projects marked as completed</span>
+                </div>
+
+            </section>
+
+            <!-- CHARTS -->
+            <section class="charts-grid">
+
+                <div class="chart-card">
+                    <h2>Project Budgets by Client</h2>
+                    <p>
+                        Compare the budgets allocated to each
+                        consulting client.
+                    </p>
+
+                    <div class="chart-wrapper">
+                        <canvas id="budgetChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h2>Projects by Status</h2>
+                    <p>
+                        View how many projects are in planning,
+                        in progress, or completed.
+                    </p>
+
+                    <div class="chart-wrapper">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- BUSINESS INSIGHTS -->
+            <section class="insights-card">
+                <h2>Business Insights</h2>
+                <p id="businessInsight">
+                    Analyzing consulting project data...
+                </p>
+
+                <a href="managesales.html" class="github-btn">
+                    Manage Client Projects
+                </a>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 Insight Consulting.
+            Student Web Development Project.
+        </p>
+    </footer>
+
+    <!-- ANALYTICS JAVASCRIPT -->
+    <script>
+
+        // Fictional sample business consulting projects.
+        // Later, we can connect these to the CRUD page.
+
+        const sampleProjects = [
+            {
+                client: "ABC Corporation",
+                budget: 15000,
+                status: "In Progress"
+            },
+            {
+                client: "XYZ Solutions",
+                budget: 25000,
+                status: "Completed"
+            },
+            {
+                client: "GreenTech",
+                budget: 10000,
+                status: "Planning"
+            },
+            {
+                client: "Summit Group",
+                budget: 30000,
+                status: "In Progress"
+            },
+            {
+                client: "BlueSky",
+                budget: 20000,
+                status: "Completed"
+            },
+            {
+                client: "NextGen",
+                budget: 35000,
+                status: "Planning"
+            }
+        ];
+
+        // Calculate dashboard statistics.
+
+        const totalProjects = sampleProjects.length;
+
+        const totalBudget = sampleProjects.reduce(
+            (total, project) => total + project.budget, 0
+        );
+
+        const activeProjects = sampleProjects.filter(
+            project => project.status === "In Progress"
+        ).length;
+
+        const completedProjects = sampleProjects.filter(
+            project => project.status === "Completed"
+        ).length;
+
+        const planningProjects = sampleProjects.filter(
+            project => project.status === "Planning"
+        ).length;
+
+        // Display KPI values.
+
+        document.getElementById("totalProjects")
+            .textContent = totalProjects;
+
+        document.getElementById("totalBudget")
+            .textContent = totalBudget.toLocaleString(
+                "en-US",
+                {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 0
+                }
+            );
+
+        document.getElementById("activeProjects")
+            .textContent = activeProjects;
+
+        document.getElementById("completedProjects")
+            .textContent = completedProjects;
+
+        // PROJECT BUDGET BAR CHART
+
+        const budgetContext =
+            document.getElementById("budgetChart");
+
+        new Chart(budgetContext, {
+            type: "bar",
+
+            data: {
+                labels: sampleProjects.map(
+                    project => project.client
+                ),
+
+                datasets: [{
+                    label: "Project Budget ($)",
+
+                    data: sampleProjects.map(
+                        project => project.budget
+                    ),
+
+                    backgroundColor: "#008b8b",
+                    borderRadius: 7
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        display: false
+                    }
                 },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
+
+                scales: {
+                    y: {
+                        beginAtZero: true,
+
+                        ticks: {
+                            callback: function(value) {
+                                return "$" +
+                                    value.toLocaleString();
+                            }
                         }
                     }
                 }
-            });
-        </script>
-    </main>
+            }
+        });
+
+        // PROJECT STATUS DOUGHNUT CHART
+
+        const statusContext =
+            document.getElementById("statusChart");
+
+        new Chart(statusContext, {
+            type: "doughnut",
+
+            data: {
+                labels: [
+                    "Planning",
+                    "In Progress",
+                    "Completed"
+                ],
+
+                datasets: [{
+                    data: [
+                        planningProjects,
+                        activeProjects,
+                        completedProjects
+                    ],
+
+                    backgroundColor: [
+                        "#94a3b8",
+                        "#008b8b",
+                        "#102a43"
+                    ],
+
+                    borderWidth: 2
+                }]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                plugins: {
+                    legend: {
+                        position: "bottom"
+                    }
+                }
+            }
+        });
+
+        // AUTOMATIC BUSINESS INSIGHT
+
+        const averageBudget =
+            totalBudget / totalProjects;
+
+        document.getElementById("businessInsight")
+            .textContent =
+            "Insight Consulting currently has " +
+            totalProjects +
+            " consulting projects with a combined budget of $" +
+            totalBudget.toLocaleString() +
+            ". The average project budget is $" +
+            averageBudget.toLocaleString(
+                "en-US",
+                { maximumFractionDigits: 0 }
+            ) +
+            ". There are " +
+            activeProjects +
+            " projects in progress and " +
+            completedProjects +
+            " completed projects.";
+
+    </script>
+
 </body>
 </html>
+

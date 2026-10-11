@@ -1,36 +1,809 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Sales</title>
+    <title>Manage Projects | Insight Consulting</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
+    <!-- NAVIGATION -->
     <header>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                Insight Consulting
+            </a>
+
+            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="aboutus.html">About Us</a></li>
-                <li><a href="managesales.html">Manage Sales</a></li>
+                <li><a href="aboutus.html">About Me</a></li>
+                <li>
+                    <a href="managesales.html" class="active"
+                       aria-current="page">Manage Sales</a>
+                </li>
                 <li><a href="analytics.html">Analytics</a></li>
             </ul>
         </nav>
     </header>
-    <main>
-        <h1>Manage Sales</h1>
-        <form>
-            <label for="product">Product Name:</label>
-            <input type="text" id="product" name="product"><br>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price"><br>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" name="quantity"><br>
-            <button type="submit">Create</button>
-            <button type="button">Read</button>
-            <button type="button">Update</button>
-            <button type="button">Delete</button>
-        </form>
+
+    <main class="manage-page">
+
+        <!-- HERO -->
+        <section class="about-hero">
+            <h1>Client Project Management</h1>
+            <p>
+                Organize consulting projects, monitor budgets,
+                and keep track of your clients.
+            </p>
+        </section>
+
+        <div class="manage-container">
+
+            <section class="dashboard-heading">
+                <h2>Project Overview</h2>
+                <p>
+                    Manage client project information and track
+                    business performance in one place.
+                </p>
+                <p class="sample-note">
+                    This dashboard uses fictional demonstration data.
+                </p>
+            </section>
+
+            <!-- SUMMARY CARDS -->
+            <section class="kpi-grid">
+
+                <div class="kpi-card">
+                    <h3>Total Projects</h3>
+                    <p id="totalProjects">0</p>
+                    <span>All consulting projects</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Active Projects</h3>
+                    <p id="activeProjects">0</p>
+                    <span>Currently in progress</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Completed Projects</h3>
+                    <p id="completedProjects">0</p>
+                    <span>Successfully completed</span>
+                </div>
+
+                <div class="kpi-card">
+                    <h3>Total Budget</h3>
+                    <p id="totalBudget">$0</p>
+                    <span>Combined project budgets</span>
+                </div>
+
+            </section>
+
+            <!-- PROJECT FORM -->
+            <section class="manage-card">
+                <h2 id="formTitle">Add a New Project</h2>
+                <p>
+                    Enter the details below to create or
+                    update a consulting project.
+                </p>
+
+                <form id="projectForm" class="project-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-field">
+                            <label for="clientName">
+                                Client Name
+                            </label>
+                            <input
+                                type="text"
+                                id="clientName"
+                                placeholder="ABC Corporation"
+                                maxlength="100"
+                                required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="projectName">
+                                Project Name
+                            </label>
+                            <input
+                                type="text"
+                                id="projectName"
+                                placeholder="Process Improvement"
+                                maxlength="100"
+                                required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="serviceType">
+                                Consulting Service
+                            </label>
+                            <select id="serviceType" required>
+                                <option value="">
+                                    Select a Service
+                                </option>
+                                <option value="Business Strategy">
+                                    Business Strategy
+                                </option>
+                                <option value="Project Management">
+                                    Project Management
+                                </option>
+                                <option value="Business Analytics">
+                                    Business Analytics
+                                </option>
+                                <option value="Process Improvement">
+                                    Process Improvement
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="projectBudget">
+                                Project Budget ($)
+                            </label>
+                            <input
+                                type="number"
+                                id="projectBudget"
+                                min="0"
+                                step="0.01"
+                                placeholder="15000"
+                                required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="projectStatus">
+                                Project Status
+                            </label>
+                            <select id="projectStatus" required>
+                                <option value="Planning">
+                                    Planning
+                                </option>
+                                <option value="In Progress">
+                                    In Progress
+                                </option>
+                                <option value="Completed">
+                                    Completed
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="completionDate">
+                                Expected Completion Date
+                            </label>
+                            <input
+                                type="date"
+                                id="completionDate"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="saveButton">
+                            Add Project
+                        </button>
+
+                        <button
+                            type="button"
+                            id="cancelButton"
+                            class="secondary-button"
+                            hidden>
+                            Cancel Editing
+                        </button>
+                    </div>
+
+                </form>
+
+                <p id="formMessage"
+                   class="form-message"
+                   role="status"
+                   aria-live="polite"></p>
+            </section>
+
+            <!-- PROJECT RECORDS -->
+            <section class="manage-card">
+
+                <div class="records-heading">
+                    <div>
+                        <h2>Client Projects</h2>
+                        <p>
+                            View, search, edit, and delete
+                            your consulting projects.
+                        </p>
+                    </div>
+
+                    <a href="analytics.html"
+                       class="github-btn">
+                        View Analytics
+                    </a>
+                </div>
+
+                <!-- SEARCH AND FILTER -->
+                <div class="filter-grid">
+
+                    <div class="form-field">
+                        <label for="searchProjects">
+                            Search Projects
+                        </label>
+                        <input
+                            type="search"
+                            id="searchProjects"
+                            placeholder="Search client or project">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="filterStatus">
+                            Filter by Status
+                        </label>
+                        <select id="filterStatus">
+                            <option value="All">
+                                All Projects
+                            </option>
+                            <option value="Planning">
+                                Planning
+                            </option>
+                            <option value="In Progress">
+                                In Progress
+                            </option>
+                            <option value="Completed">
+                                Completed
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- PROJECT TABLE -->
+                <div class="table-container">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client</th>
+                                <th>Project</th>
+                                <th>Service</th>
+                                <th>Budget</th>
+                                <th>Status</th>
+                                <th>Due Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="projectTableBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <p id="emptyMessage"
+                   class="empty-message"
+                   hidden>
+                    No matching projects found.
+                </p>
+
+            </section>
+
+        </div>
+
     </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            &copy; 2026 Insight Consulting.
+            Student Web Development Project.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // SAMPLE CONSULTING PROJECTS
+
+        const defaultProjects = [
+            {
+                id: 1,
+                client: "ABC Corporation",
+                name: "Process Improvement",
+                service: "Process Improvement",
+                budget: 15000,
+                status: "In Progress",
+                date: "2026-12-15"
+            },
+            {
+                id: 2,
+                client: "XYZ Solutions",
+                name: "IT Implementation",
+                service: "Project Management",
+                budget: 25000,
+                status: "Completed",
+                date: "2026-09-30"
+            },
+            {
+                id: 3,
+                client: "GreenTech",
+                name: "Growth Strategy",
+                service: "Business Strategy",
+                budget: 10000,
+                status: "Planning",
+                date: "2027-01-20"
+            },
+            {
+                id: 4,
+                client: "Summit Group",
+                name: "Digital Transformation",
+                service: "Project Management",
+                budget: 30000,
+                status: "In Progress",
+                date: "2027-03-10"
+            },
+            {
+                id: 5,
+                client: "BlueSky",
+                name: "Market Analysis",
+                service: "Business Analytics",
+                budget: 20000,
+                status: "Completed",
+                date: "2026-08-25"
+            },
+            {
+                id: 6,
+                client: "NextGen",
+                name: "Business Expansion",
+                service: "Business Strategy",
+                budget: 35000,
+                status: "Planning",
+                date: "2027-05-15"
+            }
+        ];
+
+        // READ PROJECTS FROM BROWSER STORAGE
+
+        const storageKey = "insightConsultingProjects";
+
+        function loadProjects() {
+            try {
+                const saved = localStorage.getItem(storageKey);
+
+                if (saved !== null) {
+                    const parsed = JSON.parse(saved);
+
+                    if (Array.isArray(parsed)) {
+                        return parsed;
+                    }
+                }
+            } catch (error) {
+                console.error("Could not load projects:", error);
+            }
+
+            return structuredClone(defaultProjects);
+        }
+
+        let projects = loadProjects();
+
+        let editingId = null;
+
+        function saveProjects() {
+            try {
+                localStorage.setItem(
+                    storageKey,
+                    JSON.stringify(projects)
+                );
+                return true;
+            } catch (error) {
+                console.error("Could not save projects:", error);
+                showMessage("Could not save project data.", true);
+                return false;
+            }
+        }
+
+        // SAVE INITIAL DEMONSTRATION DATA
+
+        if (localStorage.getItem(storageKey) === null) {
+            saveProjects();
+        }
+
+        // HTML ELEMENTS
+
+        const projectForm =
+            document.getElementById("projectForm");
+
+        const tableBody =
+            document.getElementById("projectTableBody");
+
+        const searchInput =
+            document.getElementById("searchProjects");
+
+        const statusFilter =
+            document.getElementById("filterStatus");
+
+        const saveButton =
+            document.getElementById("saveButton");
+
+        const cancelButton =
+            document.getElementById("cancelButton");
+
+        const formTitle =
+            document.getElementById("formTitle");
+
+        // FORMAT CURRENCY
+
+        function formatCurrency(amount) {
+            return Number(amount).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+                maximumFractionDigits: 0
+            });
+        }
+
+        // DISPLAY MESSAGE
+
+        function showMessage(message, isError = false) {
+            const element =
+                document.getElementById("formMessage");
+
+            element.textContent = message;
+            element.style.color =
+                isError ? "#b91c1c" : "#087c74";
+        }
+
+        // UPDATE DASHBOARD STATISTICS
+
+        function updateDashboard() {
+
+            const total = projects.length;
+
+            const active = projects.filter(
+                project => project.status === "In Progress"
+            ).length;
+
+            const completed = projects.filter(
+                project => project.status === "Completed"
+            ).length;
+
+            const budget = projects.reduce(
+                (sum, project) =>
+                    sum + Number(project.budget), 0
+            );
+
+            document.getElementById("totalProjects")
+                .textContent = total;
+
+            document.getElementById("activeProjects")
+                .textContent = active;
+
+            document.getElementById("completedProjects")
+                .textContent = completed;
+
+            document.getElementById("totalBudget")
+                .textContent = formatCurrency(budget);
+        }
+
+        // SAFE TABLE CELL CREATION
+
+        function addCell(row, value) {
+            const cell = document.createElement("td");
+            cell.textContent = value;
+            row.appendChild(cell);
+            return cell;
+        }
+
+        // READ: DISPLAY PROJECTS
+
+        function renderProjects() {
+
+            tableBody.replaceChildren();
+
+            const search =
+                searchInput.value.toLowerCase().trim();
+
+            const filter = statusFilter.value;
+
+            const filtered = projects.filter(project => {
+
+                const matchesSearch =
+                    project.client.toLowerCase()
+                        .includes(search) ||
+                    project.name.toLowerCase()
+                        .includes(search);
+
+                const matchesStatus =
+                    filter === "All" ||
+                    project.status === filter;
+
+                return matchesSearch && matchesStatus;
+            });
+
+            filtered.forEach(project => {
+
+                const row = document.createElement("tr");
+
+                addCell(row, project.client);
+                addCell(row, project.name);
+                addCell(row, project.service);
+                addCell(row, formatCurrency(project.budget));
+
+                const statusCell =
+                    addCell(row, project.status);
+
+                const statusBadge =
+                    document.createElement("span");
+
+                statusBadge.className = "project-status " +
+                    project.status.toLowerCase()
+                        .replaceAll(" ", "-");
+
+                statusBadge.textContent = project.status;
+
+                statusCell.replaceChildren(statusBadge);
+
+                addCell(row, project.date);
+
+                const actionCell =
+                    document.createElement("td");
+
+                const actions =
+                    document.createElement("div");
+
+                actions.className = "table-actions";
+
+                // EDIT BUTTON
+
+                const editButton =
+                    document.createElement("button");
+
+                editButton.type = "button";
+                editButton.textContent = "Edit";
+                editButton.className = "edit-button";
+
+                editButton.addEventListener("click", () => {
+                    editProject(project.id);
+                });
+
+                // DELETE BUTTON
+
+                const deleteButton =
+                    document.createElement("button");
+
+                deleteButton.type = "button";
+                deleteButton.textContent = "Delete";
+                deleteButton.className = "delete-button";
+
+                deleteButton.addEventListener("click", () => {
+                    deleteProject(project.id);
+                });
+
+                actions.append(editButton, deleteButton);
+                actionCell.appendChild(actions);
+                row.appendChild(actionCell);
+
+                tableBody.appendChild(row);
+            });
+
+            document.getElementById("emptyMessage")
+                .hidden = filtered.length !== 0;
+
+            updateDashboard();
+        }
+
+        // CREATE OR UPDATE PROJECT
+
+        projectForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const client =
+                document.getElementById("clientName")
+                    .value.trim();
+
+            const name =
+                document.getElementById("projectName")
+                    .value.trim();
+
+            const service =
+                document.getElementById("serviceType")
+                    .value;
+
+            const budget =
+                Number(document.getElementById("projectBudget")
+                    .value);
+
+            const status =
+                document.getElementById("projectStatus")
+                    .value;
+
+            const date =
+                document.getElementById("completionDate")
+                    .value;
+
+            if (
+                !client || !name || !service || !status ||
+                !date || !Number.isFinite(budget) ||
+                budget < 0
+            ) {
+                showMessage(
+                    "Please enter valid project details.",
+                    true
+                );
+                return;
+            }
+
+            const projectData = {
+                client,
+                name,
+                service,
+                budget,
+                status,
+                date
+            };
+
+            const previous = structuredClone(projects);
+            const wasEditing = editingId !== null;
+
+            if (wasEditing) {
+
+                // UPDATE EXISTING PROJECT
+
+                projects = projects.map(project =>
+                    project.id === editingId
+                        ? { id: editingId, ...projectData }
+                        : project
+                );
+
+            } else {
+
+                // CREATE NEW PROJECT
+
+                const newId = projects.reduce(
+                    (max, project) =>
+                        Math.max(max, Number(project.id)), 0
+                ) + 1;
+
+                projects.push({
+                    id: newId,
+                    ...projectData
+                });
+            }
+
+            if (!saveProjects()) {
+                projects = previous;
+                return;
+            }
+
+            resetForm();
+            renderProjects();
+
+            showMessage(
+                wasEditing
+                    ? "Project updated successfully!"
+                    : "Project added successfully!"
+            );
+        });
+
+        // EDIT: FILL FORM WITH EXISTING DATA
+
+        function editProject(id) {
+
+            const project = projects.find(
+                item => item.id === id
+            );
+
+            if (!project) return;
+
+            editingId = id;
+
+            document.getElementById("clientName")
+                .value = project.client;
+
+            document.getElementById("projectName")
+                .value = project.name;
+
+            document.getElementById("serviceType")
+                .value = project.service;
+
+            document.getElementById("projectBudget")
+                .value = project.budget;
+
+            document.getElementById("projectStatus")
+                .value = project.status;
+
+            document.getElementById("completionDate")
+                .value = project.date;
+
+            formTitle.textContent = "Edit Project";
+            saveButton.textContent = "Save Changes";
+            cancelButton.hidden = false;
+
+            showMessage("");
+
+            projectForm.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            document.getElementById("clientName").focus({
+                preventScroll: true
+            });
+        }
+
+        // DELETE PROJECT
+
+        function deleteProject(id) {
+
+            const project = projects.find(
+                item => item.id === id
+            );
+
+            if (!project) return;
+
+            const confirmed = confirm(
+                "Are you sure you want to delete " +
+                project.name + "?"
+            );
+
+            if (!confirmed) return;
+
+            const previous = projects;
+
+            projects = projects.filter(
+                item => item.id !== id
+            );
+
+            if (!saveProjects()) {
+                projects = previous;
+                return;
+            }
+
+            if (editingId === id) {
+                resetForm();
+            }
+
+            renderProjects();
+            showMessage("Project deleted successfully.");
+        }
+
+        // RESET THE FORM
+
+        function resetForm() {
+            projectForm.reset();
+            editingId = null;
+
+            formTitle.textContent = "Add a New Project";
+            saveButton.textContent = "Add Project";
+            cancelButton.hidden = true;
+        }
+
+        // CANCEL EDITING
+
+        cancelButton.addEventListener("click", () => {
+            resetForm();
+            showMessage("");
+        });
+
+        // FILTERING AND SEARCHING
+
+        searchInput.addEventListener(
+            "input", renderProjects
+        );
+
+        statusFilter.addEventListener(
+            "change", renderProjects
+        );
+
+        // DISPLAY INITIAL PROJECTS
+
+        renderProjects();
+
+    </script>
+
 </body>
 </html>
+
